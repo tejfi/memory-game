@@ -1,25 +1,11 @@
-let card = document.querySelectorAll("card");
-let cards = [...card]
+const cardDeck = document.querySelectorAll("#card-deck");
+let hasFlippedCard = false;
+let firstCard. secondCard;
 
-let openedCards = [];
-
-var displayCard = function (){
-    this.classList.toggle("open");
-    this.classList.toggle("show");
-    this.classList.toggle("disabled");
-};
-
-
-// @description add opened cards to OpenedCards list and check if cards are match or not
-function cardOpen() {
-    openedCards.push(this);
-    var len = openedCards.length;
-    if(len === 2){
-        moveCounter();
-        if(openedCards[0].type === openedCards[1].type){
-            matched();
-        } else {
-            unmatched();
-        }
+function flipCard(){
+    this.classList.add(('flip');
+    if(!hasFlippedCard){
+        console.log('ye')
     }
-};
+
+}
