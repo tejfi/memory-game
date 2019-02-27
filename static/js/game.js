@@ -1,6 +1,5 @@
 
-let suffleCards = function () {
-    let deck_of_cards = ["fas fa-anchor", "fas fa-anchor", "fas fa-gem", "fas fa-gem", "fab fa-accessible-icon", "fab fa-accessible-icon", "fab fa-affiliatetheme", "fab fa-affiliatetheme", "fas fa-ambulance", "fas fa-ambulance"]
+function suffleCards (deck_of_cards) {
     let ctr = deck_of_cards.length;
     let temp;
     let index;
@@ -14,27 +13,87 @@ let suffleCards = function () {
     return deck_of_cards;
 }
 
+function newArray(card_num) {
+    let deck_of_cards = [
+    "fa-java",
+    "fa-windows",
+    "fa-python",
+    "fa-git-square",
+    "fa-node-js",
+    "fa-php",
+    "fa-css3-alt",
+    "fa-ubuntu",
+    "fa-js", "fa-gitlab"
+];
+    let newDeck = new Array();
+    for (let i = 0; i< (card_num/2); i++){
+        newDeck.push(deck_of_cards[i]);
+        newDeck.push(deck_of_cards[i]);
+    }
+    let suffledDeck = suffleCards(newDeck);
+    return newDeck;
+}
+
+
+function examMatch(firstClassList, secondClassList, flippedCards) {
+    if (firstClassList[1] === secondClassList[1]) {
+        flippedCards.style.backgroundColor = 'green';
+        flippedCards.removeEventListener();
+        console.log('yes')
+    } else {
+        for (let i = 0; i < flippedCards.length; i++) {
+            flippedCards[i].classList.remove('is-flipped');
+        }
+    }
+}
+
 function init(){
-    let deck_of_cards = suffleCards()
     let card_num = document.getElementById("card-deck").dataset.cardNum;
+    let newDeck = newArray(card_num);
     let index = 0;
+    let move_num = 0;
     for (let i = 1; i <= card_num; i++) {
         let div = document.createElement("div");
-        div.className ="col-md-2 col-sm-6 card";
-        div.setAttribute("data-front_pic", deck_of_cards[index]);
+        div.className ="col-md-2 col-sm-6 card flip-card";
+        div.setAttribute("data-front_pic", newDeck[index]);
+        div.innerHTML = '<i class="fas fa-motorcycle card-face"></i>';
+        div.innerHTML += `<i class="fab ${newDeck[index]} card-back"></i>`;
         index += 1;
-        div.innerHTML = '<i className="fab fa-js"></i>';
         document.getElementById("card-deck").appendChild(div);
+        div.addEventListener('click', function (event) {
+            this.classList.toggle('is-flipped');
+            move_num ++;
+            if (move_num ===2){
+                let flippedCards = document.querySelectorAll('.is-flipped');
+                // let fabsContainer = flippedCards.querySelectorAll('.fab');
+                let firstCard = flippedCards[0].querySelectorAll('.fab');
+                let secondCard = flippedCards[1].querySelectorAll('.fab');
+                console.log(firstCard)
+                for (let i=0; i< firstCard.length ; i++){
+                    let firstClassList = firstCard[i].classList;
+                    let secondClassList = secondCard[i].classList;
+
+                    console.log(firstClassList[1], secondClassList[1]);
+                    setTimeout(examMatch(firstClassList, secondClassList, flippedCards), 3000);
+
+                }
+            move_num = 0;
+    };
+
+        })
     }
-    let clickedCard = document.querySelectorAll(".card");
-    let move_num = 0;
-    for (let card of clickedCard){
-    card.addEventListener("click", clickingCard);
 }
 
 function clickingCard() {
-        let target = event.currentTarget;
-        target.innerHTML = `<i class=${target.dataset.frontPic}></i>`; //valamiért kettéválasztja a classt.
+    let clickedCard = document.querySelectorAll(".card");
+    for (let card of clickedCard){
+    card.addEventListener("click", function(event){
+        this.classList.toggle('is-flipped')
+
+
+        // let target = event.currentTarget;
+        // let front_pic = target.dataset.front_pic;
+        // target.innerHTML = `<i class="fab ${target.dataset.front_pic} card-back"></i>`; //valamiért kettéválasztja a classt.
         target.classList.add("open");
         move_num ++;
         if (move_num ===2) {

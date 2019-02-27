@@ -56,9 +56,6 @@ body {
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
-.fa-anchor {
-    color: green;
-}
 
 @media (min-width: 1200px) {
     .container {
@@ -67,8 +64,33 @@ body {
 
 }
 
+
 i {
-    color: green;
+    color: #32ff42;
     font-size: 80px;
 }
 
+
+.flip-card {
+    cursor: pointer;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+
+
+.card-face {
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.card-back {
+    color: white;
+    transform: rotateY(180deg);
+    position: absolute;
+}
+
+
+.flip-card.is-flipped {
+    transform: rotateY(180deg);
+
+}
