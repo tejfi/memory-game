@@ -37,9 +37,9 @@ function newArray(card_num) {
 
 function examMatch(firstClassList, secondClassList, flippedCards) {
     if (firstClassList[1] === secondClassList[1]) {
-        flippedCards.style.backgroundColor = 'green';
-        flippedCards.removeEventListener();
-        console.log('yes')
+        for (let i = 0; i < flippedCards.length; i++) {
+            flippedCards[i].style.backgroundColor = 'green';
+        }
     } else {
         for (let i = 0; i < flippedCards.length; i++) {
             flippedCards[i].classList.remove('is-flipped');
@@ -65,21 +65,17 @@ function init(){
             move_num ++;
             if (move_num ===2){
                 let flippedCards = document.querySelectorAll('.is-flipped');
-                // let fabsContainer = flippedCards.querySelectorAll('.fab');
                 let firstCard = flippedCards[0].querySelectorAll('.fab');
                 let secondCard = flippedCards[1].querySelectorAll('.fab');
-                console.log(firstCard)
                 for (let i=0; i< firstCard.length ; i++){
                     let firstClassList = firstCard[i].classList;
                     let secondClassList = secondCard[i].classList;
-
-                    console.log(firstClassList[1], secondClassList[1]);
-                    setTimeout(examMatch(firstClassList, secondClassList, flippedCards), 3000);
-
+                    setTimeout(function () {
+                        examMatch(firstClassList, secondClassList, flippedCards)
+                    }, 1000);
                 }
-            move_num = 0;
-    };
-
+                move_num = 0;
+            }
         })
     }
 }
