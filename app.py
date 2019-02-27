@@ -6,15 +6,14 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    nums = [10, 15, 20, 25]
+    return render_template('index.html', nums=nums)
 
 
 @app.route('/game')
 def game():
-    row_num=int(request.args.get('row-num'))
-    col_num=int(request.args.get('col-num'))
-    win_size=int(request.args.get('win-size'))
-    return render_template('game.html', row_num=row_num, col_num=col_num, win_size=win_size)
+    card_num=int(request.args.get('card-num'))
+    return render_template('game.html', card_num=card_num)
 
 
 if __name__ == '__main__':
