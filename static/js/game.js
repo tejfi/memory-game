@@ -10,7 +10,7 @@ function suffleCards (deck_of_cards) {
         deck_of_cards[ctr] = deck_of_cards[index];
         deck_of_cards[index] = temp;
     }
-    return deck_of_cards;
+
 }
 
 function newArray(card_num) {
@@ -30,7 +30,7 @@ function newArray(card_num) {
         newDeck.push(deck_of_cards[i]);
         newDeck.push(deck_of_cards[i]);
     }
-    let suffledDeck = suffleCards(newDeck);
+    suffleCards(newDeck);
     return newDeck;
 }
 
@@ -79,34 +79,34 @@ function init(){
         })
     }
 }
-
-function clickingCard() {
-    let clickedCard = document.querySelectorAll(".card");
-    for (let card of clickedCard){
-    card.addEventListener("click", function(event){
-        this.classList.toggle('is-flipped')
-
-
-        // let target = event.currentTarget;
-        // let front_pic = target.dataset.front_pic;
-        // target.innerHTML = `<i class="fab ${target.dataset.front_pic} card-back"></i>`; //valamiért kettéválasztja a classt.
-        target.classList.add("open");
-        move_num ++;
-        if (move_num ===2) {
-            const open_cards = document.querySelectorAll(".open");
-            if (open_cards[0].innerHTML === open_cards[1].innerHTML){
-                for (let card of open_cards){
-                    card.style.backgroundColor = 'red';
-                    card.classList.remove("open")
-                    card.classList.add("done")
-                }
-
-            }
-            move_num = 0;
-        }
-    });
-}
-}
+//
+// function clickingCard() {
+//     let clickedCard = document.querySelectorAll(".card");
+//     for (let card of clickedCard){
+//     card.addEventListener("click", function(event){
+//         this.classList.toggle('is-flipped')
+//
+//
+//         // let target = event.currentTarget;
+//         // let front_pic = target.dataset.front_pic;
+//         // target.innerHTML = `<i class="fab ${target.dataset.front_pic} card-back"></i>`; //valamiért kettéválasztja a classt.
+//         target.classList.add("open");
+//         move_num ++;
+//         if (move_num ===2) {
+//             const open_cards = document.querySelectorAll(".open");
+//             if (open_cards[0].innerHTML === open_cards[1].innerHTML){
+//                 for (let card of open_cards){
+//                     card.style.backgroundColor = 'red';
+//                     card.classList.remove("open")
+//                     card.classList.add("done")
+//                 }
+//
+//             }
+//             move_num = 0;
+//         }
+//     });
+// }
+// }
 
 
 init()
