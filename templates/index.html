@@ -17,14 +17,14 @@
         <div class="row mb-3">
             <div class="col-4 col-md-2 col-lg-1">
                 <select class="form-control" name="row-num">
-                    {% for num in range(2, 21) %}
+                    {% for num in range(2, 31) %}
                         <option value="{{ num }}">{{ num }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="col-4 col-md-2 col-lg-1">
                 <select class="form-control" name="col-num">
-                    {% for num in range(2, 45) %}
+                    {% for num in range(10, 31,10) %}
                         <option value="{{ num }}">{{ num }}</option>
                     {% endfor %}
                 </select>

@@ -6,17 +6,19 @@
 {% endblock %}
 
 {% block content %}
-            <i class="fas fa-anchor"></i>
+    <div class="container">
+        <header>
+            <h1>Memory Game</h1>
+        </header>
+        <div id="card-deck" class="row" onclick="this.classList.toggle('hover');">
+            {% for col in range(col_num) %}
+                <div id="back-card" class="col-md-2 col-sm-6 flip-card">
+                    <i class="fas fa-motorcycle  card-face"></i>
+                    <i class="fab fa-js card-back"></i>
+                </div>
 
-<div class=" container">
-    <header>
-        <h1>Memory Game</h1>
-    </header>
-    <div id="card-deck" class="row">
-        {% for col in range(col_num) %}
-            <div id="back-card"  class="col-md-2 col-sm-6"><i class="fab fa-js"></i></div>
-
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
-</div>
 {% endblock %}
+
