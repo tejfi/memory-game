@@ -53,11 +53,19 @@ function examMatch(firstClassList, secondClassList, flippedCards) {
 
 }
 
+function congratulation() {
+    let congrat = document.getElementById("congrat");
+    congrat.innerHTML = "Congratulations!";
+    document.getElementById("replay").style.display = "inherit";
+
+
+}
+
 function winCheck() {
     let cardNum = document.getElementById("card-deck").dataset.cardNum;
     let matchedCards = document.getElementsByClassName("matched");
     if (cardNum == matchedCards.length){
-        alert("jeee");
+        congratulation();
     }
 }
 

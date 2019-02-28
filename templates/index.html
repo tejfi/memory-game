@@ -1,14 +1,17 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <form action="/game" method="GET">
-        <label for="selection">How many cards would you like to play with?</label>
-         <select class="form-control" name="card-num" id="selection" >
+    <div class="container">
+    <header>
+        <h1 class="title">Memory Game</h1>
+    </header>
+    <form class="select_form" action="/game" method="GET">
+        <label for="selection">How many cards would you like to play with?</label><br>
             {% for num in nums %}
-                <option value="{{ num }}">{{ num }}</option>
+                <input type="radio" name="card-num" value="{{ num }}">{{ num }}
             {% endfor %}
-        </select>
-<br>
+<br><br>
         <button class="btn-outline-dark" type="submit">Let's go!</button>
     </form>
+    </div>
 {% endblock %}

@@ -9,13 +9,19 @@
 
 <div class=" container">
     <header>
-        <h1>Memory Game</h1>
+        <h1 class="title">Memory Game</h1>
     </header>
     <div id="card-deck" class="row" data-card-num = {{ card_num }} %} onclick="this.classList.toggle('hover')">
 
     </div>
-    <h1>Congratulation!</h1>
 </div>
+<div id="win">
+    <h1 id="congrat" ></h1>
+    <a id="replay" href="{{ url_for("index") }}" class="btn btn-success" style="display: none; text-align: center">replay</a>
+</div>
+
+
+
 {% endblock %}
 
 
