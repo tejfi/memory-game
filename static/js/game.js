@@ -13,7 +13,7 @@ function suffleCards (deck_of_cards) {
 
 }
 
-function newArray(card_num) {
+function newArray(cardNum) {
     let deck_of_cards = [
     "fa-java",
     "fa-windows",
@@ -26,7 +26,7 @@ function newArray(card_num) {
     "fa-js", "fa-gitlab"
 ];
     let newDeck = new Array();
-    for (let i = 0; i< (card_num/2); i++){
+    for (let i = 0; i< (cardNum/2); i++){
         newDeck.push(deck_of_cards[i]);
         newDeck.push(deck_of_cards[i]);
     }
@@ -39,20 +39,35 @@ function examMatch(firstClassList, secondClassList, flippedCards) {
     if (firstClassList[1] === secondClassList[1]) {
         for (let i = 0; i < flippedCards.length; i++) {
             flippedCards[i].style.backgroundColor = 'green';
+            flippedCards[i].classList.remove('open');
+            flippedCards[i].classList.add('matched');
+
         }
     } else {
         for (let i = 0; i < flippedCards.length; i++) {
             flippedCards[i].classList.remove('is-flipped');
+            flippedCards[i].classList.remove('open');
         }
+    }
+    winCheck();
+
+}
+
+function winCheck() {
+    let cardNum = document.getElementById("card-deck").dataset.cardNum;
+    let matchedCards = document.getElementsByClassName("matched");
+    if (cardNum == matchedCards.length){
+        alert("jeee");
     }
 }
 
+
 function init(){
-    let card_num = document.getElementById("card-deck").dataset.cardNum;
-    let newDeck = newArray(card_num);
+    let cardNum = document.getElementById("card-deck").dataset.cardNum;
+    let newDeck = newArray(cardNum);
     let index = 0;
     let move_num = 0;
-    for (let i = 1; i <= card_num; i++) {
+    for (let i = 1; i <= cardNum; i++) {
         let div = document.createElement("div");
         div.className ="col-md-2 col-sm-6 card flip-card";
         div.setAttribute("data-front_pic", newDeck[index]);
@@ -62,9 +77,10 @@ function init(){
         document.getElementById("card-deck").appendChild(div);
         div.addEventListener('click', function (event) {
             this.classList.toggle('is-flipped');
+            this.classList.toggle("open");
             move_num ++;
             if (move_num ===2){
-                let flippedCards = document.querySelectorAll('.is-flipped');
+                let flippedCards = document.querySelectorAll('.open');
                 let firstCard = flippedCards[0].querySelectorAll('.fab');
                 let secondCard = flippedCards[1].querySelectorAll('.fab');
                 for (let i=0; i< firstCard.length ; i++){
